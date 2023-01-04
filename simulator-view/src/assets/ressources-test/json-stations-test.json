@@ -1,0 +1,83 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.8438036672972915,45.76300631974168]
+            },
+            "properties": {
+                "id": 1,
+                "name":"Caserne Lyon-Corneille",
+                "adresse":"76 rue Pierre Corneille 69003 Lyon",
+                "type":"STATION"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.821420697982638,45.78416590872629]
+            },
+            "properties": {
+                "id": 2,
+                "name":"Caserne de Lyon-Croix-Rousse",
+                "adresse":"120 Rue Philippe de Lasalle 69004 Lyon",
+                "type":"STATION"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.848065624343283,45.74992793722056]
+            },
+            "properties": {
+                "id": 3,
+                "name":"Caserne de Lyon-Rochat",
+                "adresse":"3 Rue de la Madeleine 69007 Lyon",
+                "type":"STATION"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.8438036672972915,45.76300631974168]
+            },
+            "properties": {
+                "id": 4,
+                "name":"Caserne de Lyon-Gerland",
+                "adresse":"19 Avenue Debourg 69007 Lyon",
+                "type":"STATION"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.905650540044171,45.76538402863389]
+            },
+            "properties": {
+                "id": 5,
+                "nom":"Caserne de Villeurbanne-Cusset",
+                "adresse":"11 Rue Baudin 69100 Villeurbanne",
+                "type":"STATION"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 4.878167034141129,45.778968250489285]
+            },
+            "properties": {
+                "id": 6,
+                "nom":"Caserne Villeurbanne La Doua",
+                "adresse":"35 rue Georges Courteline 69100 Villeurbanne",
+                "type":"STATION"
+            }
+        }
+    ]
+}

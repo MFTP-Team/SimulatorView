@@ -1,5 +1,5 @@
 {
-  "name": "simulator-view",
+  "name": "emergency-view",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,11 +10,15 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "axios": "^1.2.2",
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue3-openlayers": "^0.1.71",
+    "vuetify": "3.0.4"
   },
   "devDependencies": {
+    "@mdi/font": "^7.1.96",
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/tsconfig": "^0.1.3",

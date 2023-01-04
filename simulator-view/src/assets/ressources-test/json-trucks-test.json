@@ -1,0 +1,17 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [4.7,45.783726561289825]
+            },
+            "properties": {
+                "id": "1",
+                "Status": "EN COURS D'INTERVENTION",
+                "type":"TRUCK"
+            }
+        }
+    ]
+}
