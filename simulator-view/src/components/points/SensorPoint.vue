@@ -2,9 +2,9 @@
 import {inject, ref} from 'vue'
 import { defineComponent } from 'vue'
 
-import fireIcon from '@/assets/icone/fire-icon.svg'
+import sensorIcon from '@/assets/icone/sensor-icon.svg'
 import { useGeoJsonStore } from '@/stores/geoJsonStore'
-import { useFireStore } from '@/stores/fireStore'
+import { useSensorStore } from '@/stores/sensorStore'
 
 export default defineComponent({
 
@@ -14,23 +14,25 @@ export default defineComponent({
     const zoom = ref(16)
     const rotation = ref(0)
 
+    const radius = ref(180)
+
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
     const geoJsonStore = useGeoJsonStore()
+    const sensorLocalisation:string = geoJsonStore.getGeoJsonPointSensors
+    console.log(sensorLocalisation)
+    const sensorStore = useSensorStore()
 
-    const fireLocalisation:string = geoJsonStore.getGeoJsonFires
-    const fireStore = useFireStore()
 
-    const actionOnSelect = (event:any) => {  
+    const actionOnSelect = (event:any) => {
       const selectedId = event.selected[0].values_.id
-      fireStore.addFire(selectedId)
+      sensorStore.addSensor(selectedId)
     }
 
     const filterSelection = (feature:any) =>{
-      return feature.values_.type == "FIRE";
+      return feature.values_.type == "SENSOR";
     }
-    
 
     return {
       center,
@@ -38,10 +40,11 @@ export default defineComponent({
       zoom,
       rotation,
       geoJson,
-      fireLocalisation,
-      fireIcon,
+      sensorLocalisation,
+      sensorIcon,
       actionOnSelect,
-      filterSelection
+      filterSelection,
+      radius
     }
   },
 })
@@ -49,13 +52,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="fireIcon"/>
-
+  <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="sensorIcon"/>
   <ol-vector-layer>
-    <ol-source-vector :url="fireLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :projection="projection">
     </ol-source-vector>
     <ol-style>
-      <ol-style-icon :src="fireIcon" :scale="0.05"></ol-style-icon>
+      <ol-style-icon :src="sensorIcon" :scale="0.05"></ol-style-icon>
     </ol-style>
   </ol-vector-layer>
+
 </template>

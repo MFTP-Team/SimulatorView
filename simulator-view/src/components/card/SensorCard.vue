@@ -1,13 +1,13 @@
   
 <script lang="ts">
-import type { Station } from '@/models/Station'
+import type { Sensor } from '@/models/Sensor'
 import { defineComponent, ref } from 'vue'
 import type { PropType } from 'vue'
 
   export default defineComponent({
     props: {
       data: { 
-        type: Object as PropType<Station>, 
+        type: Object as PropType<Sensor>, 
         required: true
       },
     },

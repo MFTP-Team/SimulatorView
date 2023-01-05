@@ -3,11 +3,11 @@
 import { defineComponent } from 'vue'
 import { ref } from 'vue'
 import FireCard from './card/FireCard.vue'
-import StationCard from './card/StationCard.vue'
+import SensorCard from './card/SensorCard.vue'
 import TruckCard from './card/TruckCard.vue'
 
 import { useFireStore } from '@/stores/fireStore'
-import { useStationStore } from '@/stores/stationStore'
+import { useSensorStore } from '@/stores/sensorStore'
 import { useTruckStore } from '@/stores/truckStore'
 
 import { storeToRefs } from 'pinia'
@@ -20,20 +20,20 @@ import { storeToRefs } from 'pinia'
     const rail = ref(true)
 
     const fireStore = useFireStore()
-    const stationStore = useStationStore()
+    const sensorStore = useSensorStore()
     const truckStore = useTruckStore()
 
     const refFireStore = storeToRefs(fireStore)
-    const refStationStore = storeToRefs(stationStore)
+    const refSensorStore = storeToRefs(sensorStore)
     const refTruckStore = storeToRefs(truckStore)
 
     const firesArray =ref(refFireStore.fireArray)
-    const stationsArray = ref(refStationStore.stationArray)
+    const sensorArray = ref(refSensorStore.sensorArray)
     const trucksArray = ref(refTruckStore.truckArray)
 
     return{
         firesArray,
-        stationsArray,
+        sensorArray,
         trucksArray,
         drawer,
         mini,
@@ -66,6 +66,13 @@ import { storeToRefs } from 'pinia'
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
+            <v-list-item prepend-icon="mdi-access-point" title="Capteurs"></v-list-item>
+            <v-list-item 
+                prepend-icon=""
+                v-for="sensor in sensorArray"
+            >
+                <SensorCard :data="sensor"></SensorCard>
+            </v-list-item>
             <v-list-item prepend-icon="mdi-fire" title="Feux"></v-list-item>
             <v-list-item 
                 v-for="fire in firesArray"
@@ -80,13 +87,7 @@ import { storeToRefs } from 'pinia'
                 <TruckCard :data="truck"></TruckCard>
             </v-list-item>
 
-            <v-list-item prepend-icon="mdi-shield-home" title="Casernes"></v-list-item>
-            <v-list-item 
-                prepend-icon=""
-                v-for="station in stationsArray"
-            >
-                <StationCard :data="station"></StationCard>
-            </v-list-item>
+
         </v-list>
     </v-navigation-drawer>
 </template>

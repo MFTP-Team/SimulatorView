@@ -4,7 +4,7 @@ import { defineComponent } from 'vue'
 
 import stationIcon from '@/assets/icone/fire-station.png'
 import { useGeoJsonStore } from '@/stores/geoJsonStore'
-import { useStationStore } from '@/stores/stationStore'
+import { useSensorStore } from '@/stores/sensorStore'
 
 export default defineComponent({
 
@@ -14,23 +14,24 @@ export default defineComponent({
     const zoom = ref(16)
     const rotation = ref(0)
 
+    const radius = ref(180)
+
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
     const geoJsonStore = useGeoJsonStore()
-    const stationLocalisation:string = geoJsonStore.getGeoJsonStations
-    const stationStore = useStationStore()
+    const sensorLocalisation:string = geoJsonStore.getGeoJsonPolygonSensors
+    const sensorStore = useSensorStore()
 
 
     const actionOnSelect = (event:any) => {
       const selectedId = event.selected[0].values_.id
-      stationStore.addStation(selectedId)
+      sensorStore.addSensor(selectedId)
     }
 
     const filterSelection = (feature:any) =>{
-      return feature.values_.type == "STATION";
+      return feature.values_.type == "SENSOR";
     }
-    
 
     return {
       center,
@@ -38,10 +39,11 @@ export default defineComponent({
       zoom,
       rotation,
       geoJson,
-      stationLocalisation,
+      sensorLocalisation,
       stationIcon,
       actionOnSelect,
-      filterSelection
+      filterSelection,
+      radius
     }
   },
 })
@@ -49,13 +51,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="stationIcon"/>
-
+  <!-- <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="stationIcon"/> -->
   <ol-vector-layer>
-    <ol-source-vector :url="stationLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :projection="projection">
+      <ol-feature>
+        <ol-geom-polygon></ol-geom-polygon>
+
+      </ol-feature>
     </ol-source-vector>
     <ol-style>
-      <ol-style-icon :src="stationIcon" :scale="0.1"></ol-style-icon>
+      <ol-style-stroke color="black" :width="5" ></ol-style-stroke>
+      <ol-style-fill :color="`rgba(161, 146, 154, 0.4)`"></ol-style-fill>
     </ol-style>
   </ol-vector-layer>
+
 </template>

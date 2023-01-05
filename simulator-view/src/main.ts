@@ -5,12 +5,13 @@ import App from './App.vue'
 import router from './router'
 
 import FirePoint from '@/components/points/FirePoint.vue'
-import StationPoint from '@/components/points/StationPoint.vue'
+import SensorPoint from '@/components/points/SensorPoint.vue'
 import TruckPoint from '@/components/points/TruckPoint.vue'
+import SensorPolygon from './components/points/SensorPolygon.vue'
 import Map from '@/components/Map.vue'
 import PointSelection from '@/components/points/action/PointSelection.vue'
 import FireCard from './components/card/FireCard.vue'
-import StationCard from './components/card/StationCard.vue'
+import SensorCard from './components/card/SensorCard.vue'
 import TruckCard from './components/card/TruckCard.vue'
 
 import OpenLayersMap from 'vue3-openlayers'
@@ -37,14 +38,15 @@ app.use(router)
 app.use(vuetify)
 
 app.component('FirePoint',FirePoint)
-app.component('StationPoint',StationPoint)
+app.component('SensorPoint',SensorPoint)
 
 app.component('TruckPoint',TruckPoint)
+app.component('SensorPolygon',SensorPolygon)
 app.component('PointSelection',PointSelection)
 
 app.component('TruckCard',TruckCard)
 app.component('FireCard',FireCard)
-app.component('StationCard',StationCard)
+app.component('SensorCard',SensorCard)
 
 app.component('Map',Map)
 app.use(OpenLayersMap)

@@ -2,7 +2,8 @@
 import {ref} from 'vue'
 import { defineComponent } from 'vue'
 import FirePoint from './points/FirePoint.vue'
-import StationPoint from './points/StationPoint.vue'
+import SensorPoint from './points/SensorPoint.vue'
+import SensorPolygon from './points/SensorPolygon.vue'
 import TruckPoint from './points/TruckPoint.vue'
 
 
@@ -33,13 +34,11 @@ export default defineComponent({
 
         <ol-tile-layer>
             <ol-source-osm />
-        </ol-tile-layer>  
-
+        </ol-tile-layer>
+        <SensorPolygon/>
+        <SensorPoint/>
         <FirePoint/>
-        <StationPoint/>
         <TruckPoint/>
-
-
     </ol-map>
   </div>
 </template>

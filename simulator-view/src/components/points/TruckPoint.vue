@@ -2,7 +2,7 @@
 import {inject, ref} from 'vue'
 import { defineComponent } from 'vue'
 
-import truckIcon from '@/assets/icone/fire-truck.png'
+import truckIcon from '@/assets/icone/fire-truck-icon.svg'
 import { useGeoJsonStore } from '@/stores/geoJsonStore'
 import { useTruckStore } from '@/stores/truckStore'
 
@@ -53,7 +53,7 @@ export default defineComponent({
     <ol-source-vector :url="trucksLocalisation" :format="geoJson" :projection="projection">
     </ol-source-vector>
     <ol-style>
-      <ol-style-icon :src="truckIcon" :scale="0.1"></ol-style-icon>
+      <ol-style-icon :src="truckIcon" :scale="0.05"></ol-style-icon>
     </ol-style>
     </ol-vector-layer>
 </template>
