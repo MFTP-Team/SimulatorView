@@ -3,7 +3,7 @@ import {ref} from 'vue'
 import { defineComponent } from 'vue'
 import FirePoint from './points/FirePoint.vue'
 import SensorPoint from './points/SensorPoint.vue'
-import SensorPolygon from './points/SensorPolygon.vue'
+import SensorPolygon from './polygon/SensorPolygon.vue'
 import TruckPoint from './points/TruckPoint.vue'
 
 
