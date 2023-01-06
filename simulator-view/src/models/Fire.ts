@@ -1,9 +1,9 @@
 import type {fireStatus} from "./enums/fireStatus"
 
 export interface Fire{
-    id:Number,
-    longitude:Number, 
-    latitude:Number,
-    intensity:Number,
+    id:number,
+    longitude:number, 
+    latitude:number,
+    intensity:number,
     status:fireStatus
 }

@@ -1,10 +1,10 @@
 import type { truckStatus } from "./enums/truckStatus"
 
 export interface Truck{
-    id:Number,
-    longitude:Number, 
-    latitude:Number,
-    power:Number,
-    id_station:Number,
+    id:number,
+    longitude:number, 
+    latitude:number,
+    power:number,
+    id_station:number,
     status:truckStatus
 }

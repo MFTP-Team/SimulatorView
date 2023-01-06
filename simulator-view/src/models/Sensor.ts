@@ -1,6 +1,6 @@
 export interface Sensor{
-    id:Number,
-    longitude:Number, 
-    latitude:Number,
-    radius:Number
+    id:number,
+    longitude:number, 
+    latitude:number,
+    radius:number
 }
