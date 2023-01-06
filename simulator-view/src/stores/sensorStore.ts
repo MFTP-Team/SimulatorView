@@ -13,10 +13,9 @@ export const useSensorStore = defineStore({
     actions:{
         async addSensor(id:Number){ 
             try {
-                const response = await axios.get(import.meta.env.VITE_BASE_URL_API + '/api/resource/get/sensor/'+id)
+                const response = await axios.get(import.meta.env.VITE_BASE_URL_API + '/api/sensor/get/'+id)
                 this.sensorArray.push(response.data)
             } catch (error) {
-                console.log(error)
             }
         },
         deleteSensor(id:Number){

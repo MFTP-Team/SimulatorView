@@ -1,8 +1,9 @@
 <script lang="ts">
 import {inject, ref} from 'vue'
 import { defineComponent } from 'vue'
-import { useGeoJsonStore } from '@/stores/geoJsonStore'
 
+import stationIcon from '@/assets/icone/fire-station.png'
+import { useGeoJsonStore } from '@/stores/geoJsonStore'
 
 export default defineComponent({
 
@@ -12,12 +13,14 @@ export default defineComponent({
     const geoJson = new format.GeoJSON();
 
     const geoJsonStore = useGeoJsonStore()
-    const sensorLocalisation:string = geoJsonStore.getGeoJsonPolygonSensors
+    const fireLocalisation:string = geoJsonStore.getGeoJsonPolygonFires
+
 
     return {
       projection,
       geoJson,
-      sensorLocalisation,
+      fireLocalisation,
+      stationIcon,
     }
   },
 })
@@ -26,14 +29,14 @@ export default defineComponent({
 
 <template>
   <ol-vector-layer>
-    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="fireLocalisation" :format="geoJson" :projection="projection">
       <ol-feature>
         <ol-geom-polygon></ol-geom-polygon>
       </ol-feature>
     </ol-source-vector>
     <ol-style>
-      <ol-style-stroke color="black" :width="5" ></ol-style-stroke>
-      <ol-style-fill :color="`rgba(161, 146, 154, 0.4)`"></ol-style-fill>
+      <ol-style-stroke color="red" :width="5" ></ol-style-stroke>
+      <ol-style-fill :color="`rgba(226, 52, 20, 0.4)`"></ol-style-fill>
     </ol-style>
   </ol-vector-layer>
 

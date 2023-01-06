@@ -26,8 +26,11 @@ export default defineComponent({
 
 
     const actionOnSelect = (event:any) => {
-      const selectedId = event.selected[0].values_.id
-      sensorStore.addSensor(selectedId)
+      if(event.selected.length !== 0 ){
+        const selectedId = event.selected[0].values_.id
+        sensorStore.addSensor(selectedId)
+      }
+
     }
 
     const filterSelection = (feature:any) =>{

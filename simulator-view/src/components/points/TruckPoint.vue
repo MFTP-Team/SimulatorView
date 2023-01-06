@@ -18,13 +18,14 @@ export default defineComponent({
 
     const geoJsonStore = useGeoJsonStore()
     const trucksLocalisation:string = geoJsonStore.getGeoJsonTrucks
+    console.log(trucksLocalisation)
     const truckStore = useTruckStore()
 
     const actionOnSelect = (event:any) => {
-
-      const selectedId = event.selected[0].values_.id
-
-      truckStore.addTruck(selectedId)
+      if(event.selected.length !== 0){
+        const selectedId = event.selected[0].values_.id
+        truckStore.addTruck(selectedId)
+      }
 
     }
 
@@ -55,5 +56,5 @@ export default defineComponent({
     <ol-style>
       <ol-style-icon :src="truckIcon" :scale="0.05"></ol-style-icon>
     </ol-style>
-    </ol-vector-layer>
+  </ol-vector-layer>
 </template>

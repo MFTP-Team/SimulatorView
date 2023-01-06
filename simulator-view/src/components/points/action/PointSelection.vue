@@ -12,11 +12,13 @@ export default defineComponent({
   setup(props) {
 
     const selectConditions = inject('ol-selectconditions')
-    const selectCondition = selectConditions.click
+    const selectCondition = selectConditions.singleClick
 
     const propsAction = toRef(props,'actionOnSelect')
     const filter = toRef(props,'filterSelection')
     const icon = toRef(props,'markerIcon')
+
+
 
     return {
         selectCondition,
@@ -31,8 +33,5 @@ export default defineComponent({
 
 <template>
     <ol-interaction-select @select.stop="propsAction" :condition="selectCondition" :filter="filter">
-    <ol-style>
-      <ol-style-icon :src="icon" :scale="0.2"></ol-style-icon>
-    </ol-style>
   </ol-interaction-select>
 </template>

@@ -1,6 +1,6 @@
   
 <script lang="ts">
-import { defineComponent, toRef,ref,  } from 'vue'
+import { defineComponent, toRef, ref } from 'vue'
 import type { PropType } from 'vue'
 import type { Fire } from '@/models/Fire'
 
@@ -13,9 +13,11 @@ import type { Fire } from '@/models/Fire'
     },
    setup(props){
     const show = ref(false)
+    const fire = toRef(props,"data")
 
     return{
-        show
+        show,
+        fire
     }
    },
 })
@@ -23,50 +25,32 @@ import type { Fire } from '@/models/Fire'
 
 
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-  >
-    <v-img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Fire_in_Ranua.JPG/1200px-Fire_in_Ranua.JPG"
-      height="200px"
-      cover
-    ></v-img>
-
-    <v-card-title>
-      Fire
-    </v-card-title>
-
-    <v-card-subtitle>
-      C CHO
-    </v-card-subtitle>
-
-    <v-card-actions>
-      <v-btn
-        color="orange-lighten-2"
-        variant="text"
-      >
-        Explore
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-        @click="show = !show"
-      ></v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          CHO CHO CHO CHO CHO
-        </v-card-text>
+  <v-expansion-panel>
+    <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-minus">
+      <v-icon icon="mdi-fire"></v-icon>
+      Feux n°{{fire.id}}
+    </v-expansion-panel-title>
+    
+    <v-expansion-panel-text>
+      <div>
+        <v-btn style="float:right;" prepend-icon="mdi-close" variant="plain"></v-btn>
       </div>
-    </v-expand-transition>
-  </v-card>
+
+      <div>
+       Latitude: {{ fire.latitude }} Longitude : {{ fire.latitude }}
+      </div>
+
+      <div>
+        Intensité : {{ fire.intensity }}
+      </div>
+
+      <div>
+        <v-btn>Modifier</v-btn>
+        <v-btn>Supprimer</v-btn>
+      </div>
+    </v-expansion-panel-text>
+  </v-expansion-panel>
+
 </template>
 
 

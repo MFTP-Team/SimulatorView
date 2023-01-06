@@ -2,25 +2,24 @@
 import {ref} from 'vue'
 import { defineComponent } from 'vue'
 import FirePoint from './points/FirePoint.vue'
+import FirePolygon from './polygon/FirePolygon.vue'
 import SensorPoint from './points/SensorPoint.vue'
 import SensorPolygon from './polygon/SensorPolygon.vue'
 import TruckPoint from './points/TruckPoint.vue'
 
-
 export default defineComponent({
-  setup() {
-    const center = ref([4.869733536816722,45.783726561289825])
-    const projection = ref('EPSG:4326')
-    const zoom = ref(16)
-    const rotation = ref(0)
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-    }
-  },
+    setup() {
+        const center = ref([4.869733536816722, 45.783726561289825]);
+        const projection = ref("EPSG:4326");
+        const zoom = ref(16);
+        const rotation = ref(0);
+        return {
+            center,
+            projection,
+            zoom,
+            rotation,
+        };
+    },
 })
 
 </script>
@@ -37,6 +36,7 @@ export default defineComponent({
         </ol-tile-layer>
         <SensorPolygon/>
         <SensorPoint/>
+        <FirePolygon/>
         <FirePoint/>
         <TruckPoint/>
     </ol-map>

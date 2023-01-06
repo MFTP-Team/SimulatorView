@@ -1,6 +1,6 @@
   
 <script lang="ts">
-import { defineComponent,ref  } from 'vue'
+import { defineComponent,ref, toRef  } from 'vue'
 import type { PropType} from 'vue'
 import type { Truck } from '@/models/Truck'
 
@@ -13,9 +13,11 @@ import type { Truck } from '@/models/Truck'
     },
    setup(props){
     const show = ref(false)
+    const truck = toRef(props,"data")
 
     return{
-      show
+      show,
+      truck
     }
    },
 })
@@ -23,50 +25,31 @@ import type { Truck } from '@/models/Truck'
 
 
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-  >
-    <v-img
-      src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Camion_Citerne_Feux_For%C3%AAts_2000.jpg"
-      height="200px"
-      cover
-    ></v-img>
+  <v-expansion-panel>
+      <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-minus">
+        <v-icon icon="mdi-fire-truck"></v-icon>
+        Camions n°{{truck.id}}
+      </v-expansion-panel-title>
+      
+      <v-expansion-panel-text>
+        <div>
+          <v-btn style="float:right;" prepend-icon="mdi-close" variant="plain"></v-btn>
+        </div>
 
-    <v-card-title>
-      Truck
-    </v-card-title>
+        <div>
+        Latitude: {{ truck.latitude }} Longitude : {{ truck.longitude }}
+        </div>
 
-    <v-card-subtitle>
-        PINON PINPON PINPON
-    </v-card-subtitle>
+        <div>
+          Power : {{ truck.power}}
+        </div>
 
-    <v-card-actions>
-      <v-btn
-        color="orange-lighten-2"
-        variant="text"
-      >
-        Explore
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-        @click="show = !show"
-      ></v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          PINPON PINPON PINPON PIN PON PIN PON 
-        </v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>
+        <div>
+          <v-btn>Modifier</v-btn>
+          <v-btn>Supprimer</v-btn>
+        </div>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
 </template>
 
 

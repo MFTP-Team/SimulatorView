@@ -30,7 +30,7 @@ import { storeToRefs } from 'pinia'
     const firesArray =ref(refFireStore.fireArray)
     const sensorArray = ref(refSensorStore.sensorArray)
     const trucksArray = ref(refTruckStore.truckArray)
-
+    
     return{
         firesArray,
         sensorArray,
@@ -47,12 +47,13 @@ import { storeToRefs } from 'pinia'
 <template>
  <v-navigation-drawer
         v-model="drawer"
+        :width="400"
         :rail="rail"
         permanent
         @click="rail = false"
       >
         <v-list-item
-          title="Emergency Manager"
+          title="Simulateur Manager"
         >
           <template v-slot:append>
             <v-btn
@@ -66,30 +67,33 @@ import { storeToRefs } from 'pinia'
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-            <v-list-item prepend-icon="mdi-access-point" title="Capteurs"></v-list-item>
+
             <v-list-item 
                 prepend-icon=""
                 v-for="sensor in sensorArray"
             >
+              <v-expansion-panels>
                 <SensorCard :data="sensor"></SensorCard>
+              </v-expansion-panels>
             </v-list-item>
-            <v-list-item prepend-icon="mdi-fire" title="Feux"></v-list-item>
+
             <v-list-item 
                 v-for="fire in firesArray"
             >
+              <v-expansion-panels>
                 <FireCard :data="fire"></FireCard>
+              </v-expansion-panels>
             </v-list-item>
 
-            <v-list-item prepend-icon="mdi-fire-truck" title="Camions"></v-list-item>  
             <v-list-item 
                 v-for="truck in trucksArray"
             >
+              <v-expansion-panels>  
                 <TruckCard :data="truck"></TruckCard>
+              </v-expansion-panels>
             </v-list-item>
 
 
         </v-list>
     </v-navigation-drawer>
 </template>
-
-

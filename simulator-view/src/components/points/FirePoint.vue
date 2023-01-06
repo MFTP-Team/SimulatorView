@@ -19,12 +19,14 @@ export default defineComponent({
 
     const geoJsonStore = useGeoJsonStore()
 
-    const fireLocalisation:string = geoJsonStore.getGeoJsonFires
+    const fireLocalisation:string = geoJsonStore.getGeoJsonPointFires
     const fireStore = useFireStore()
 
     const actionOnSelect = (event:any) => {  
-      const selectedId = event.selected[0].values_.id
-      fireStore.addFire(selectedId)
+      if(event.selected.length !== 0 ){
+        const selectedId = event.selected[0].values_.id
+        fireStore.addFire(selectedId)
+      }
     }
 
     const filterSelection = (feature:any) =>{

@@ -8,6 +8,7 @@ import FirePoint from '@/components/points/FirePoint.vue'
 import SensorPoint from '@/components/points/SensorPoint.vue'
 import TruckPoint from '@/components/points/TruckPoint.vue'
 import SensorPolygon from './components/polygon/SensorPolygon.vue'
+import FirePolygon from './components/polygon/FirePolygon.vue'
 import Map from '@/components/Map.vue'
 import PointSelection from '@/components/points/action/PointSelection.vue'
 import FireCard from './components/card/FireCard.vue'
@@ -42,6 +43,7 @@ app.component('SensorPoint',SensorPoint)
 
 app.component('TruckPoint',TruckPoint)
 app.component('SensorPolygon',SensorPolygon)
+app.component('FirePolygon',FirePolygon)
 app.component('PointSelection',PointSelection)
 
 app.component('TruckCard',TruckCard)
