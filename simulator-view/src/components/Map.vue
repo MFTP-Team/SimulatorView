@@ -1,5 +1,5 @@
 <script lang="ts">
-import {inject, toRef, ref} from 'vue'
+import {ref,inject} from 'vue'
 import type {Ref} from 'vue' 
 import { defineComponent } from 'vue'
 import FirePoint from './points/FirePoint.vue'
@@ -11,6 +11,8 @@ import sensorIcon from '@/assets/icone/sensor-icon.svg'
 import fireIcon from '@/assets/icone/fire-icon.svg'
 import truckIcon from '@/assets/icone/fire-truck-icon.svg'
 import { usePopUpStateStore } from '@/stores/popUpStateStore'
+import { useAlertStore } from '@/stores/alertStore'
+import { storeToRefs } from 'pinia'
 
 export default defineComponent({
     setup() {
@@ -22,12 +24,14 @@ export default defineComponent({
         const contextMenuItems:Ref<Object[]> = ref([])
         const popUpStateStore = usePopUpStateStore()
 
+        const alertStore = useAlertStore()
+        const alertStoreRef = storeToRefs(alertStore)
+        const alertStoreSizeArray = ref(alertStoreRef.alertArray.value.length)
 
         contextMenuItems.value = [{
             text: 'Ajouter feu',
             icon: fireIcon,
             callback: (val:any) => {
-                console.log(val)
                 popUpStateStore.setMaxValue(20)
                 popUpStateStore.setMinValue(1)
                 popUpStateStore.setValueName("Intensite")
@@ -62,15 +66,17 @@ export default defineComponent({
     ]
 
 
-        return {
-            center,
-            projection,
-            zoom,
-            rotation,
-            contextMenuItems,
-            fireIcon
 
-        };
+    return {
+        center,
+        projection,
+        zoom,
+        rotation,
+        contextMenuItems,
+        fireIcon,
+        alertStoreSizeArray,
+    };
+
     },
 })
 
@@ -78,6 +84,11 @@ export default defineComponent({
 
 <template>
   <div>
+    <router-link to="/alert" custom v-slot="{ navigate }">
+        <v-badge floating id="overlayMenu" :content="alertStoreSizeArray" @click="navigate" >
+            <v-icon icon="mdi-alert-circle" size="x-large"></v-icon>    
+        </v-badge>
+    </router-link>  
     <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:100vh; widght:100%" ref="map">
 
         <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" 
@@ -88,12 +99,12 @@ export default defineComponent({
         </ol-tile-layer>
 
         <ol-context-menu :items="contextMenuItems" />
-        <ol-vector-layer>
+        <!-- <ol-vector-layer>
             <ol-source-vector ref="markers"></ol-source-vector>
             <ol-style>
                 <ol-style-icon :src="fireIcon" :scale="0.1"></ol-style-icon>
             </ol-style>
-        </ol-vector-layer>
+        </ol-vector-layer> -->
 
         <SensorPolygon/>
         <SensorPoint/>
@@ -103,3 +114,13 @@ export default defineComponent({
     </ol-map>
   </div>
 </template>
+
+<style scoped>
+#overlayMenu {
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    right: 50px;
+}
+
+</style>

@@ -19,9 +19,11 @@ export default defineComponent({
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
+    const strategy = inject('ol-loadingstrategy');
+    const bbox = strategy.bbox;
+
     const geoJsonStore = useGeoJsonStore()
     const sensorLocalisation:string = geoJsonStore.getGeoJsonPointSensors
-    console.log(sensorLocalisation)
     const sensorStore = useSensorStore()
 
 
@@ -47,6 +49,7 @@ export default defineComponent({
       sensorIcon,
       actionOnSelect,
       filterSelection,
+      bbox,
       radius
     }
   },
@@ -57,7 +60,7 @@ export default defineComponent({
 <template>
   <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="sensorIcon"/>
   <ol-vector-layer>
-    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :strategy="bbox" :projection="projection">
     </ol-source-vector>
     <ol-style>
       <ol-style-icon :src="sensorIcon" :scale="0.05"></ol-style-icon>

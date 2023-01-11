@@ -18,8 +18,10 @@ export default defineComponent({
 
     const geoJsonStore = useGeoJsonStore()
     const trucksLocalisation:string = geoJsonStore.getGeoJsonTrucks
-    console.log(trucksLocalisation)
     const truckStore = useTruckStore()
+
+    const strategy = inject('ol-loadingstrategy');
+    const bbox = strategy.bbox;
 
     const actionOnSelect = (event:any) => {
       if(event.selected.length !== 0){
@@ -39,7 +41,8 @@ export default defineComponent({
       trucksLocalisation,
       truckIcon,
       actionOnSelect,
-      filterSelection
+      filterSelection,
+      bbox
     }
   },
 })
@@ -51,7 +54,7 @@ export default defineComponent({
   <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="truckIcon"/>
 
   <ol-vector-layer>
-    <ol-source-vector :url="trucksLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="trucksLocalisation" :strategy="bbox" :format="geoJson" :projection="projection">
     </ol-source-vector>
     <ol-style>
       <ol-style-icon :src="truckIcon" :scale="0.05"></ol-style-icon>

@@ -12,6 +12,9 @@ export default defineComponent({
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
+    const strategy = inject('ol-loadingstrategy');
+    const bbox = strategy.bbox;
+
     const geoJsonStore = useGeoJsonStore()
     const fireLocalisation:string = geoJsonStore.getGeoJsonPolygonFires
 
@@ -21,6 +24,7 @@ export default defineComponent({
       geoJson,
       fireLocalisation,
       stationIcon,
+      bbox 
     }
   },
 })
@@ -29,7 +33,7 @@ export default defineComponent({
 
 <template>
   <ol-vector-layer>
-    <ol-source-vector :url="fireLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="fireLocalisation" :format="geoJson" :strategy="bbox" :projection="projection">
       <ol-feature>
         <ol-geom-polygon></ol-geom-polygon>
       </ol-feature>

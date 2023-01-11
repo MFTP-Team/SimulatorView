@@ -11,6 +11,9 @@ export default defineComponent({
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
+    const strategy = inject('ol-loadingstrategy');
+    const bbox = strategy.bbox;
+
     const geoJsonStore = useGeoJsonStore()
     const sensorLocalisation:string = geoJsonStore.getGeoJsonPolygonSensors
 
@@ -18,6 +21,7 @@ export default defineComponent({
       projection,
       geoJson,
       sensorLocalisation,
+      bbox
     }
   },
 })
@@ -26,7 +30,7 @@ export default defineComponent({
 
 <template>
   <ol-vector-layer>
-    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="sensorLocalisation" :format="geoJson" :strategy="bbox" :projection="projection">
       <ol-feature>
         <ol-geom-polygon></ol-geom-polygon>
       </ol-feature>

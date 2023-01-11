@@ -17,6 +17,9 @@ export default defineComponent({
     const format = inject('ol-format');
     const geoJson = new format.GeoJSON();
 
+    const strategy = inject('ol-loadingstrategy');
+    const bbox = strategy.bbox;
+
     const geoJsonStore = useGeoJsonStore()
 
     const fireLocalisation:string = geoJsonStore.getGeoJsonPointFires
@@ -42,6 +45,7 @@ export default defineComponent({
       geoJson,
       fireLocalisation,
       fireIcon,
+      bbox,
       actionOnSelect,
       filterSelection
     }
@@ -54,7 +58,7 @@ export default defineComponent({
   <PointSelection :actionOnSelect="actionOnSelect" :filterSelection="filterSelection" :markerIcon="fireIcon"/>
 
   <ol-vector-layer>
-    <ol-source-vector :url="fireLocalisation" :format="geoJson" :projection="projection">
+    <ol-source-vector :url="fireLocalisation" :format="geoJson" :strategy="bbox" :projection="projection">
     </ol-source-vector>
     <ol-style>
       <ol-style-icon :src="fireIcon" :scale="0.05"></ol-style-icon>
