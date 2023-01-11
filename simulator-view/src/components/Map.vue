@@ -9,6 +9,7 @@ import SensorPolygon from './polygon/SensorPolygon.vue'
 import TruckPoint from './points/TruckPoint.vue'
 import sensorIcon from '@/assets/icone/sensor-icon.svg'
 import fireIcon from '@/assets/icone/fire-icon.svg'
+import truckIcon from '@/assets/icone/fire-truck-icon.svg'
 import { usePopUpStateStore } from '@/stores/popUpStateStore'
 
 export default defineComponent({
@@ -20,12 +21,6 @@ export default defineComponent({
         
         const contextMenuItems:Ref<Object[]> = ref([])
         const popUpStateStore = usePopUpStateStore()
-
-        const markers = ref();
-        const view = ref();
-
-        const Feature = inject('ol-feature')
-        const Geom = inject('ol-geom')
 
 
         contextMenuItems.value = [{
@@ -48,6 +43,17 @@ export default defineComponent({
                 popUpStateStore.setMaxValue(100)
                 popUpStateStore.setMinValue(1)
                 popUpStateStore.setValueName("Radius")
+                popUpStateStore.setCoord(val.coordinate)
+                popUpStateStore.openPopUp()   
+            }
+        },
+        {
+            text: 'Ajouter camion',
+            icon: truckIcon,
+            callback: (val:any) => {
+                popUpStateStore.setMaxValue(10)
+                popUpStateStore.setMinValue(1)
+                popUpStateStore.setValueName("Puissance")
                 popUpStateStore.setCoord(val.coordinate)
                 popUpStateStore.openPopUp()   
             }

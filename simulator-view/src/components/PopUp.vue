@@ -5,6 +5,7 @@ import { usePopUpStateStore } from '@/stores/popUpStateStore'
 import { storeToRefs } from 'pinia'
 import { useFireStore } from '@/stores/fireStore'
 import { useSensorStore } from '@/stores/sensorStore'
+import { useTruckStore } from '@/stores/truckStore'
 
 export default defineComponent({
   setup() {
@@ -32,6 +33,10 @@ export default defineComponent({
         if(valueName.value === "Radius"){
             const sensorStore = useSensorStore()
             sensorStore.addSensorToBDD(coord.value[0],coord.value[1],popUpValue.value)
+        }
+        if(valueName.value === "Puissance"){
+            const truckStore = useTruckStore()
+            truckStore.addTruckToBDD(coord.value[0],coord.value[1],popUpValue.value)
         }
     }
 

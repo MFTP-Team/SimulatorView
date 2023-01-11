@@ -51,6 +51,19 @@ export const useTruckStore = defineStore({
              } catch (error) {
                  console.log(error)
              }
-         }
+        },
+        async addTruckToBDD(latitude:number,longitude:number,power:number){
+            try {
+                const response = await axios.post(
+                    import.meta.env.VITE_BASE_URL_API + '/api/truck/add',
+                    { 
+                        latitude:latitude,
+                        longitude:longitude,
+                        power:power
+                    })
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 })
