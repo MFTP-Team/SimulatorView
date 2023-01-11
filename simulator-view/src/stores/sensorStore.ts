@@ -51,6 +51,19 @@ export const useSensorStore = defineStore({
             } catch (error) {
                 console.log(error)
             }
+        }, 
+        async addSensorToBDD(latitude:number,longitude:number,radius:number){
+            try {
+                const response = await axios.post(
+                    import.meta.env.VITE_BASE_URL_API + '/api/sensor/add',
+                    { 
+                        latitude:latitude,
+                        longitude:longitude,
+                        radius:radius
+                    })
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 })

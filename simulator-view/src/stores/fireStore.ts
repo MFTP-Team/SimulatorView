@@ -51,6 +51,19 @@ export const useFireStore = defineStore({
              } catch (error) {
                  console.log(error)
              }
-         }
+        },
+        async addFireToBDD(latitude:number,longitude:number,power:number){
+            try {
+                const response = await axios.post(
+                    import.meta.env.VITE_BASE_URL_API + '/api/fire/add',
+                    { 
+                        latitude:latitude,
+                        longitude:longitude,
+                        power:power
+                    })
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 })

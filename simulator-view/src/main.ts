@@ -11,9 +11,12 @@ import SensorPolygon from './components/polygon/SensorPolygon.vue'
 import FirePolygon from './components/polygon/FirePolygon.vue'
 import Map from '@/components/Map.vue'
 import PointSelection from '@/components/points/action/PointSelection.vue'
+import ContextMenu from '@/components/points/action/PointSelection.vue'
 import FireCard from './components/card/FireCard.vue'
 import SensorCard from './components/card/SensorCard.vue'
 import TruckCard from './components/card/TruckCard.vue'
+import Drawer from './components/Drawer.vue'
+import PopUp from './components/PopUp.vue'
 
 import OpenLayersMap from 'vue3-openlayers'
 import 'vue3-openlayers/dist/vue3-openlayers.css'
@@ -49,6 +52,10 @@ app.component('PointSelection',PointSelection)
 app.component('TruckCard',TruckCard)
 app.component('FireCard',FireCard)
 app.component('SensorCard',SensorCard)
+app.component('ContextMenu',ContextMenu)
+
+app.component('PopUp',PopUp)
+app.component('Drawer',Drawer)
 
 app.component('Map',Map)
 app.use(OpenLayersMap)
