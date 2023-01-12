@@ -99,12 +99,6 @@ export default defineComponent({
         </ol-tile-layer>
 
         <ol-context-menu :items="contextMenuItems" />
-        <!-- <ol-vector-layer>
-            <ol-source-vector ref="markers"></ol-source-vector>
-            <ol-style>
-                <ol-style-icon :src="fireIcon" :scale="0.1"></ol-style-icon>
-            </ol-style>
-        </ol-vector-layer> -->
 
         <SensorPolygon/>
         <SensorPoint/>
