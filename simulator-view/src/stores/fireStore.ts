@@ -52,14 +52,14 @@ export const useFireStore = defineStore({
                  console.log(error)
              }
         },
-        async addFireToBDD(latitude:number,longitude:number,power:number){
+        async addFireToBDD(latitude:number,longitude:number,intensity:number){
             try {
                 const response = await axios.post(
                     import.meta.env.VITE_BASE_URL_API + '/api/fire/add',
                     { 
                         latitude:latitude,
                         longitude:longitude,
-                        power:power
+                        intensity:intensity
                     })
             } catch (error) {
                 console.log(error)
